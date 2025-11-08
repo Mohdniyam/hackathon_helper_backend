@@ -44,3 +44,6 @@ seeders/
 # Debugging
 *.pid
 *.seed
+
+# Firebase service account key
+serviceAccountKey.json
