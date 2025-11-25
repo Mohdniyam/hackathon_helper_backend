@@ -3,17 +3,15 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// 👀 Log minimal info for debugging (optional)
 console.log("📦 Connecting to:", process.env.DB_HOST || "Using DATABASE_URL");
 
-// 🧩 Create Sequelize instance (auto-detect connection mode)
 const sequelize = process.env.DATABASE_URL
   ? new Sequelize(process.env.DATABASE_URL, {
       dialect: "postgres",
       dialectOptions: {
         ssl: {
           require: true,
-          rejectUnauthorized: false, // needed for Render SSL
+          rejectUnauthorized: false,
         },
       },
       logging: false,
@@ -36,10 +34,14 @@ const sequelize = process.env.DATABASE_URL
       }
     );
 
-// 🧪 Test database connection
 sequelize
   .authenticate()
   .then(() => console.log("✅ Database connected successfully"))
   .catch((err) => console.error("❌ Database connection error:", err));
+
+sequelize
+  .sync({ alter: true }) // 👈 ADD THIS
+  .then(() => console.log("📌 All models synced successfully"))
+  .catch((err) => console.error("❌ Sync error:", err));
 
 module.exports = { sequelize };

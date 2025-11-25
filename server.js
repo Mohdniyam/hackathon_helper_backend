@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const { sequelize } = require("./config/database.js");
 const cors = require("cors");
 const firebaseRoute = require("./routes/firebaseRoute.js");
+const userRoute = require("./routes/userRoute.js");
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 
 // ✅ Mount Firebase routes
 app.use("/api/firebase", firebaseRoute);
+// ✅ Mount User routes
+app.use("/api/user", userRoute);
 
 // ✅ Database connection
 sequelize
