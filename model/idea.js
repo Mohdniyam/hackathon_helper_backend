@@ -20,6 +20,14 @@ const Idea = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    votes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    isPinned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
 
   {
