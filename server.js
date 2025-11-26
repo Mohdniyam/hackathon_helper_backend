@@ -6,6 +6,7 @@ const firebaseRoute = require("./routes/firebaseRoute.js");
 const Idea = require("./model/idea");
 const ideasRoute = require("./routes/ideasRoute");
 const categoryRoute = require("./routes/categoryRoute");
+const resourceRoutes = require("./routes/resourceRoutes");
 
 // Load environment variables
 dotenv.config();
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/ideas", ideasRoute);
 app.use("/api/categories", categoryRoute);
+app.use("/api/resources", resourceRoutes);
 // ✅ Mount Firebase routes
 app.use("/api/firebase", firebaseRoute);
 
